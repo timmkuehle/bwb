@@ -31,7 +31,7 @@ MNMLST child themes inherit the MNMLST build architecture and asset management s
 
 ### 1. Install MNMLST parent theme
 
-Download the _Tar-GZ_ or _ZIP_ file of the [latest MNMLST release](https://github.com/timmkuehle/mnmlst/releases/latest) and extract it into your WordPress installation's `themes` directory.
+Download the _Tar-GZ_ or _ZIP_ archive of the [latest MNMLST release](https://github.com/timmkuehle/mnmlst/releases/latest) and extract it into your WordPress installation's `themes` directory.
 
 > **Note:** Remove the version suffix from the folder name:
 
@@ -73,19 +73,38 @@ git add .
 git commit -m "Initial commit"
 ```
 
-### 4. Provide your own theme name and text domain
+### 4. Provide your own theme meta information
 
 Open [style.css](./style.css) and customize the theme metadata:
 
-1. Replace `Theme Name: MNMLST-Child` with your preferred theme name:
+1. Set your preferred theme name:
 
-   ```css
+   ```txt
    Theme Name: My Awesome Theme
    ```
 
-2. Replace `Text Domain: mnmlst` with your preferred text domain (only lowercase letters and hyphens allowed):
+2. Set your project description:
 
-   ```css
+   ```txt
+   Description: My Awesome Theme is an awesome WordPress theme
+   ```
+
+3. Provide project author information:
+
+   ```txt
+   Author: John Doe
+   Author URI: https://example.com
+   ```
+
+4. Set your own version number (requires [semantic versioning](https://semver.org/)):
+
+   ```txt
+   Version: 1.2.3;
+   ```
+
+5. Set your preferred text domain (only lowercase letters and hyphens allowed):
+
+   ```txt
    Text Domain: my-awesome-theme
    ```
 
@@ -366,6 +385,8 @@ git push origin v1.0.0
 ```
 
 The workflow will automatically create a GitHub release at https://github.com/YOUR_USERNAME/YOUR_REPO/releases
+
+> **Note:** If you cannot use the [Deploy Staging](#2-deploy-staging) and/or [Deploy Live](#3-deploy-live) workflows, downloading the _Tar-GZ_ or _ZIP_ archive that is created alongside the release and deploying manually (for example via [FTP](https://de.wikipedia.org/wiki/File_Transfer_Protocol)) is a good alternative.
 
 ### Recommended Workflow
 
