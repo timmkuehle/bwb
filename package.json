@@ -14,17 +14,6 @@
       "./scripts/utils/*"
     ]
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/timmkuehle/mnmlst-child.git"
-  },
-  "author": "Tim Moritz Kühle",
-  "homepage": "https://github.com/timmkuehle/mnmlst-child",
-  "bugs": {
-    "url": "https://github.com/timmkuehle/mnmlst-child/issues",
-    "email": "timmoritz.kuehle@outlook.com"
-  },
-  "license": "ISC",
   "devDependencies": {
     "@automattic/babel-plugin-preserve-i18n": "^1.0.0",
     "@babel/core": "^7.28.5",
