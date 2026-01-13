@@ -1,0 +1,17 @@
+# PHP & Composer
+/vendor
+/.php-cs-fixer.cache
+
+# NodeJS
+/package-lock.json
+/node_modules
+
+# Dist directories
+/assets/dist
+/plugins/**/dist
+/blocks/**/dist
+/.ts/.cache
+
+# Miscellaneous
+.DS_Store
+/languages/mnmlst.pot

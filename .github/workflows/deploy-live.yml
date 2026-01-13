@@ -1,0 +1,74 @@
+name: Deploy Live
+
+on:
+  push:
+    branches:
+      - MAIN_BRANCH_NAME
+
+jobs:
+  build-and-deploy:
+    name: Build and deploy
+    runs-on: ubuntu-latest
+
+    env:
+      SSH_KEY: ${{ secrets.SSH_KEY_LIVE }}
+      SSH_HOST: ${{ secrets.SSH_HOST_LIVE }}
+      SSH_USER: ${{ secrets.SSH_USER_LIVE }}
+      SSH_DEST_DIR: ${{ vars.SSH_DEST_DIR_LIVE }}
+
+    steps:
+      - name: Checkout main branch
+        uses: actions/checkout@v4
+        with:
+          ref: MAIN_BRANCH_NAME
+
+      - name: Set up NodeJS
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm i
+
+      - name: Build project
+        run: npm run build
+
+      - name: Configure SSH setup
+        run: |
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          echo "$SSH_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H $SSH_HOST > ~/.ssh/known_hosts
+
+      - name: Normalize destination directory environment variable
+        run: |
+          NORMALIZED_SSH_DEST_DIR=${SSH_DEST_DIR#/}
+          NORMALIZED_SSH_DEST_DIR=${NORMALIZED_SSH_DEST_DIR%/}
+          echo "SSH_DEST_DIR=$NORMALIZED_SSH_DEST_DIR/wp-content/themes/mnmlst-child" >> $GITHUB_ENV
+
+      - name: Clear destination directory
+        run: ssh $SSH_USER@$SSH_HOST "shopt -s dotglob; rm -rf $SSH_DEST_DIR/*"
+
+      - name: Deploy to live server
+        run: |
+          rsync -avz --delete --delete-excluded \
+          --exclude='.git*' \
+          --exclude='.php-cs-fixer.php' \
+          --exclude='.prettierignore' \
+          --exclude='.ts' \
+          --exclude='composer.*' \
+          --exclude='eslint.config.js' \
+          --exclude='node_modules' \
+          --exclude='package*.json' \
+          --exclude='prettier.config.js' \
+          --exclude='tsconfig.json' \
+          --exclude='webpack.config.js' \
+          --exclude='scripts' \
+          --exclude='tsconfig.json' \
+          --exclude='vendor' \
+          --exclude='webpack.config.js' \
+          --exclude='assets/src' \
+          --exclude='blocks/*/src' \
+          --exclude='plugins/*/src' \
+          ./ $SSH_USER@$SSH_HOST:$SSH_DEST_DIR

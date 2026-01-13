@@ -1,0 +1,47 @@
+{
+  "include": ["../**/*", "types", "overrides"],
+  "exclude": [
+    "../eslint.config.js",
+    "../prettier.config.js",
+    "../webpack.config.js",
+    "../scripts",
+    "../node_modules",
+    "../assets/dist",
+    "../plugins/**/dist",
+    "../blocks/**/dist"
+  ],
+  "compilerOptions": {
+    "target": "ES6",
+    "useDefineForClassFields": true,
+    "lib": ["ES6", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+
+    /* Transpiling */
+    "moduleResolution": "bundler",
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "tsBuildInfoFile": "./.cache/tsconfig.app.tsbuildinfo",
+    "paths": {
+      "@shared-types/*": ["./types/*"],
+      "@typed-overrides/*": ["./overrides/*"],
+      "@fonts": ["../assets/resources/fonts/*"],
+      "@resources": ["../assets/resources/*"]
+    },
+
+    /* Linting */
+    "checkJs": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "strictPropertyInitialization": true,
+    "noUncheckedSideEffectImports": true,
+    "forceConsistentCasingInFileNames": true
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "include": [
+    "../eslint.config.js",
+    "../prettier.config.js",
+    "../webpack.config.js",
+    "../scripts"
+  ],
+  "compilerOptions": {
+    "target": "ESNext",
+    "lib": ["ESNext"],
+    "module": "NodeNext",
+    "skipLibCheck": true,
+
+    /* Transpiling */
+    "moduleResolution": "nodenext",
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "noEmit": true,
+    "tsBuildInfoFile": "./.cache/tsconfig.node.tsbuildinfo",
+    "paths": {
+      "#scriptUtils/*": ["./scripts/utils/*"]
+    },
+
+    /* Linting */
+    "checkJs": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "strictPropertyInitialization": true,
+    "noUncheckedSideEffectImports": true,
+    "forceConsistentCasingInFileNames": true
+  }
+}

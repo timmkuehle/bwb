@@ -1,0 +1,65 @@
+{
+  "type": "module",
+  "main": "index.php",
+  "scripts": {
+    "start": "webpack --mode=development --watch",
+    "build": "webpack --mode=production",
+    "extract-translations": "node scripts/i18n/extract-translations.js",
+    "translate-js": "node scripts/i18n/make-json.js",
+    "lint": "tsc -b ; eslint",
+    "format": "php-cs-fixer fix ; prettier . --write"
+  },
+  "imports": {
+    "#scriptUtils/*": [
+      "./scripts/utils/*"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/timmkuehle/mnmlst-child.git"
+  },
+  "author": "Tim Moritz Kühle",
+  "homepage": "https://github.com/timmkuehle/mnmlst-child",
+  "bugs": {
+    "url": "https://github.com/timmkuehle/mnmlst-child/issues",
+    "email": "timmoritz.kuehle@outlook.com"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "@automattic/babel-plugin-preserve-i18n": "^1.0.0",
+    "@babel/core": "^7.28.5",
+    "@colors/colors": "^1.6.0",
+    "@types/eslint-config-prettier": "^6.11.3",
+    "@types/wordpress__block-editor": "^15.0.0",
+    "@wordpress/babel-preset-default": "^8.37.0",
+    "@wordpress/dependency-extraction-webpack-plugin": "^6.37.0",
+    "babel-loader": "^10.0.0",
+    "css-loader": "^7.1.2",
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "glob": "^13.0.0",
+    "globals": "^16.5.0",
+    "mini-css-extract-plugin": "^2.9.4",
+    "prettier": "^3.7.4",
+    "sass": "^1.97.1",
+    "sass-loader": "^16.0.6",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.50.1",
+    "webpack": "^5.104.1",
+    "webpack-cli": "^6.0.1"
+  },
+  "dependencies": {
+    "@wordpress/block-editor": "^14.17.0",
+    "@wordpress/blocks": "^14.11.0",
+    "@wordpress/components": "^29.8.0",
+    "@wordpress/core-data": "^7.22.0",
+    "@wordpress/data": "^10.22.0",
+    "@wordpress/editor": "^14.22.0",
+    "@wordpress/element": "^6.22.0",
+    "@wordpress/i18n": "^5.22.0",
+    "@wordpress/plugins": "^7.22.0"
+  }
+}

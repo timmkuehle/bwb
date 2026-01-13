@@ -1,0 +1,19 @@
+/*
+Theme Name: BWB
+Template: mnmlst
+Author: Tim Moritz Kühle
+Author URI: https://github.com/timmkuehle
+Description: WordPress Theme for BWB, based on MNMLST parent theme
+Version: 0.0.1
+Text Domain: bwb
+*/
+
+/*
+Frontend Styles are defined in assets/scss/main.scss.
+They are compiled to assets/css/main.css in development and assets/css/main.min.css for production.
+*/
+
+/*
+Admin Styles are defined in assets/scss/admin.scss.
+They are compiled to assets/css/admin.css in development and assets/css/admin.min.css for production.
+*/

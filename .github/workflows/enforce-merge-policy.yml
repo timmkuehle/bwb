@@ -1,0 +1,25 @@
+name: Enforce Merge Policy
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  enforce-merge-policy:
+    name: Prevent merge of invalid branch
+    if: github.base_ref == 'MAIN_BRANCH_NAME'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check for valid merge branch
+        id: check_merge_branch_validity
+        run: |
+          if [[ "${{ github.event.pull_request.head.ref }}" == "STAGING_BRANCH_NAME" ]]; then
+            echo "Branch check passed: Branch 'STAGING_BRANCH_NAME' can be merged into 'main'" >> $GITHUB_STEP_SUMMARY
+            echo "valid_branch=success" >> $GITHUB_OUTPUT
+            exit 0
+          else
+            echo "Branch check failed: Only branch 'STAGING_BRANCH_NAME' can be merged into 'main'" >> $GITHUB_STEP_SUMMARY
+            echo "valid_branch=failure" >> $GITHUB_OUTPUT
+            exit 1
+          fi
