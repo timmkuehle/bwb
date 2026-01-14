@@ -17,3 +17,9 @@ declare(strict_types=1);
  * @since MNMLST-Child 0.5.0
  * @since MNMLST-Child 0.7.0 - Asset files are no longer enqueued in this file, but handled by parent theme
  */
+
+function bwb_theme_support(): void {
+	add_theme_support('post-thumbnails');
+}
+
+add_action('after_setup_theme', 'bwb_theme_support');
