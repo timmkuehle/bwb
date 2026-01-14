@@ -1,0 +1,52 @@
+html {
+	--adminbar-height: 0;
+
+	&.has-adminbar {
+		--adminbar-height: 32px;
+
+		@media screen and (max-width: 782px) {
+			--adminbar-height: 46px;
+		}
+	}
+
+	--header-height: 3.5rem;
+	--header-margin-inline: 1rem;
+
+	@media screen and (max-width: 782px) {
+		--header-margin-inline: 0.5rem;
+	}
+
+	--header-menu-height-fallback: calc(
+		100dvh - var(--header-height) - var(--header-margin-inline) *
+			3 -var(--adminbar-height)
+	);
+	--header-menu-height: calc(
+		100vh - var(--header-height) - var(--header-margin-inline) *
+			3 - var(--adminbar-height)
+	);
+
+	--content-margin-inline: 8rem;
+
+	--color-accent: #0b6fb0;
+	--color-accent-rgb: 11, 111, 176;
+
+	--color-light: #f1f3f5;
+	--color-light-rgb: 241, 243, 245;
+	--color-dark: #182430;
+	--color-dark-rgb: 24, 36, 48;
+
+	--image-overlay-gradient: linear-gradient(
+		rgba(var(--color-accent-rgb), 0.2),
+		var(--color-dark)
+	);
+
+	--border-radius-large: 0.75rem;
+	--border-radius-medium: 0.5rem;
+	--border-radius-small: 0.25rem;
+
+	--border-accent-light: 1px solid rgba(var(--color-accent-rgb), 0.08);
+
+	--box-shadow-base:
+		0 1px 1px rgba(var(--color-dark-rgb), 0.1),
+		0 1px 6px rgba(var(--color-dark-rgb), 0.25);
+}
