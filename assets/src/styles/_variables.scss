@@ -1,5 +1,5 @@
 html {
-	--adminbar-height: 0;
+	--adminbar-height: 0px;
 
 	&.has-adminbar {
 		--adminbar-height: 32px;
@@ -17,11 +17,11 @@ html {
 	}
 
 	--header-menu-height-fallback: calc(
-		100dvh - var(--header-height) - var(--header-margin-inline) *
+		100vh - var(--header-height) - var(--header-margin-inline) *
 			3 -var(--adminbar-height)
 	);
 	--header-menu-height: calc(
-		100vh - var(--header-height) - var(--header-margin-inline) *
+		100dvh - var(--header-height) - var(--header-margin-inline) *
 			3 - var(--adminbar-height)
 	);
 
@@ -34,6 +34,19 @@ html {
 	--color-light-rgb: 241, 243, 245;
 	--color-dark: #182430;
 	--color-dark-rgb: 24, 36, 48;
+
+	--glass-gradient: repeating-linear-gradient(
+		45deg,
+		rgba(var(--color-light-rgb), 0.5),
+		rgba(var(--color-light-rgb), 0.6),
+		rgba(var(--color-light-rgb), 0.5) 20rem
+	);
+	--glass-gradient-solid: repeating-linear-gradient(
+		45deg,
+		rgba(var(--color-light-rgb), 1),
+		rgba(var(--color-light-rgb), 0.95),
+		rgba(var(--color-light-rgb), 1) 20rem
+	);
 
 	--image-overlay-gradient: linear-gradient(
 		rgba(var(--color-accent-rgb), 0.2),
