@@ -35,6 +35,8 @@ const Edit: React.FC<BlockEditProps<PostArchiveAttributes>> = ({
 		getCategoriesByIds
 	} = useEdit(attributes, setAttributes);
 
+	console.log({ posts });
+
 	return (
 		<section
 			{...useBlockProps({
@@ -95,6 +97,7 @@ const Edit: React.FC<BlockEditProps<PostArchiveAttributes>> = ({
 							post={post}
 							getCategoriesByIds={getCategoriesByIds}
 							showPostContent={attributes.showPostContent}
+							postContentLength={attributes.postContentLength}
 						/>
 					))}
 		</section>

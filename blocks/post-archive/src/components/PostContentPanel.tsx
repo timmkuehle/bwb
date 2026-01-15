@@ -2,7 +2,8 @@ import React from "react";
 import {
 	__experimentalToolsPanel as ToolsPanel,
 	__experimentalToolsPanelItem as ToolsPanelItem,
-	ToggleControl
+	ToggleControl,
+	RangeControl
 } from "@wordpress/components";
 import { PostContentPanelProps } from "../types";
 import usePostContentPanel from "../hooks/usePostContentPanel";
@@ -12,10 +13,16 @@ const PostContentPanel: React.FC<PostContentPanelProps> = ({
 	attributes,
 	setAttributes
 }) => {
-	const { showPostContent } = attributes;
+	const { showPostContent, postContentLength } = attributes;
 
-	const { onChangeShowPostContent, resetAll } =
-		usePostContentPanel(setAttributes);
+	const {
+		onChangeShowPostContent,
+		resetShowPostContent,
+		onChangePostContentLength,
+		postContentLengthHasChanged,
+		resetPostContentLength,
+		resetAll
+	} = usePostContentPanel(attributes, setAttributes);
 
 	return (
 		<ToolsPanel label={__("Post Content", "bwb")} resetAll={resetAll}>
@@ -23,9 +30,7 @@ const PostContentPanel: React.FC<PostContentPanelProps> = ({
 				label="Display Post Content"
 				hasValue={() => showPostContent}
 				isShownByDefault={true}
-				onDeselect={() => {
-					onChangeShowPostContent(false);
-				}}
+				onDeselect={resetShowPostContent}
 			>
 				<ToggleControl
 					label={__("Display Post Content", "bwb")}
@@ -34,6 +39,23 @@ const PostContentPanel: React.FC<PostContentPanelProps> = ({
 					__nextHasNoMarginBottom
 				/>
 			</ToolsPanelItem>
+			{showPostContent && (
+				<ToolsPanelItem
+					label={__("Content length", "bwb")}
+					hasValue={postContentLengthHasChanged}
+					isShownByDefault={true}
+					onDeselect={resetPostContentLength}
+				>
+					<RangeControl
+						label={__("Max number of words", "bwb")}
+						value={postContentLength}
+						checked={showPostContent}
+						onChange={onChangePostContentLength}
+						__nextHasNoMarginBottom
+						__next40pxDefaultSize
+					/>
+				</ToolsPanelItem>
+			)}
 		</ToolsPanel>
 	);
 };

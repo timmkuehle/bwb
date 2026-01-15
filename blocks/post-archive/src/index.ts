@@ -23,6 +23,10 @@ registerBlockType<PostArchiveAttributes>(metadata.name, {
 			type: "boolean",
 			default: false
 		},
+		postContentLength: {
+			type: "number",
+			default: 30
+		},
 		selectedCategories: {
 			type: "array",
 			default: []

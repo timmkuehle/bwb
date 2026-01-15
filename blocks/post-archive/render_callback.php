@@ -12,6 +12,7 @@ $category_ids = $post_type_supports_categories
 $number_of_items = $attributes['numberOfItems'] ?? 5;
 
 $show_post_content = $attributes['showPostContent'] ?? false;
+$post_content_length = $attributes['postContentLength'] ?? 30;
 
 $query = new \WP_Query([
 	'post_type' => $post_type,
@@ -33,10 +34,10 @@ if ($query->have_posts()) :
 
 		$title = get_the_title();
 
-		$excerpt = get_the_excerpt();
-		$truncatedExcerpt = $show_post_content
-			? join(' ', array_slice(explode(' ', get_the_excerpt()), 0, 30))
-			: null;
+		$excerpt_words = explode(' ', get_the_excerpt());
+		$truncated_excerpt = count($excerpt_words) > $post_content_length
+			? join(' ', array_slice($excerpt_words, 0, $post_content_length)) . ' […]'
+			: join(' ', $excerpt_words);
 
 		$featured_media_id = get_post_meta($post_id, '_mnmlst_featured_media', true)['id'];
 
@@ -79,9 +80,9 @@ if ($query->have_posts()) :
             </header>
             <div class="mnmlst_entry-content">
 
-                <?php if ($show_post_content && !empty($excerpt)) : ?>
+                <?php if ($show_post_content && !empty($truncated_excerpt)) : ?>
 
-                    <p class="mnmlst_post-excerpt"><?= esc_html($truncatedExcerpt !== $excerpt ? $truncatedExcerpt . ' […]' : $excerpt); ?></p>
+                    <p class="mnmlst_post-excerpt"><?= esc_html($truncated_excerpt); ?></p>
                     
                 <?php endif; ?>
 

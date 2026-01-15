@@ -12,6 +12,7 @@ export interface PostArchiveAttributes {
 	showPostContent: boolean;
 	selectedCategories: QueryControlsCategory[];
 	numberOfItems: number;
+	postContentLength: number;
 }
 
 export interface PostContentPanelProps {
@@ -24,6 +25,7 @@ export interface PostPreviewProps {
 	postType: string;
 	getCategoriesByIds: (categoryIds: number[]) => Term[] | undefined;
 	showPostContent: boolean;
+	postContentLength: number;
 }
 
 export interface FeaturedMediaProps {

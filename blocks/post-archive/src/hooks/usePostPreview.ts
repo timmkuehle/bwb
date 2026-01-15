@@ -1,10 +1,12 @@
+import { decodeEntities } from "@wordpress/html-entities";
 import __useSelect from "@typed-overrides/__useSelect";
 
 const usePostPreview = (
 	classList: string[],
 	postType: string,
-	featuredMediaId?: number,
-	renderedExcerpt?: string
+	postContentLength: number,
+	excerpt: string,
+	featuredMediaId?: number
 ) => {
 	const wrapperClassName = [...classList, "mnmlst_post-wrapper"].join(" ");
 
@@ -24,18 +26,20 @@ const usePostPreview = (
 		[postType]
 	);
 
-	const sanitizedExcerpt =
-		renderedExcerpt !== ""
-			? renderedExcerpt
-					?.replace(/<\/?[A-z0-9]+>|\n/g, "")
-					.replace(/&hellip;/g, "…")
-			: null;
+	const excerptWords = decodeEntities(excerpt)
+		.replace(/<\/?[A-z0-9]+>|\n/g, "")
+		.split(" ");
+
+	const truncatedExcerpt =
+		excerptWords.length > postContentLength
+			? excerptWords.slice(0, postContentLength).join(" ") + " […]"
+			: excerptWords.join(" ");
 
 	return {
 		wrapperClassName,
 		isResolvingFeaturedMedia,
 		featuredMedia,
-		sanitizedExcerpt
+		truncatedExcerpt
 	};
 };
 
