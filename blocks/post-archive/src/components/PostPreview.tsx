@@ -12,8 +12,17 @@ const PostPreview: React.FC<PostPreviewProps> = ({
 }) => {
 	const { id, class_list, title, excerpt, meta } = post;
 
-	const { wrapperClassName, isResolvingFeaturedMedia, featuredMedia } =
-		usePostPreview(class_list, postType, meta?._mnmlst_featured_media.id);
+	const {
+		wrapperClassName,
+		isResolvingFeaturedMedia,
+		featuredMedia,
+		sanitizedExcerpt
+	} = usePostPreview(
+		class_list,
+		postType,
+		meta?._mnmlst_featured_media.id,
+		excerpt.rendered
+	);
 
 	const categories = getCategoriesByIds(
 		"categories" in post ? post.categories : []
@@ -40,8 +49,8 @@ const PostPreview: React.FC<PostPreviewProps> = ({
 				)}
 			</header>
 			<div className="mnmlst_entry-content">
-				{excerpt.raw !== "" && (
-					<p className="mnmlst_post-excerpt">{excerpt.raw}</p>
+				{sanitizedExcerpt !== null && (
+					<p className="mnmlst_post-excerpt">{sanitizedExcerpt}</p>
 				)}
 			</div>
 			<footer className="mnmlst_entry-footer">
