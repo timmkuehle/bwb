@@ -1,7 +1,5 @@
-import packageMeta from "../../package.json" with { type: "json" };
-
 export const HEADERS = {
-	"Report-Msgid-Bugs-To": packageMeta.bugs.url,
+	"Report-Msgid-Bugs-To": "https://github.com/timmkuehle/bwb/issues",
 	"X-Poedit-Basepath": "..",
 	"X-Poedit-KeywordsList":
 		"__;_x:1,2c;_n;_nx;_e;_ex;esc_html_e;esc_html__;esc_html_x;esc_attr__;esc_attr_e;esc_attr_x;number_format_i18n;date_i18n",
