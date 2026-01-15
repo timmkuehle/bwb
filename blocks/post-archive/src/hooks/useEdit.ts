@@ -8,7 +8,7 @@ const useEdit = (
 	attributes: PostArchiveAttributes,
 	setAttributes: (attrs: Partial<PostArchiveAttributes>) => void
 ) => {
-	const { postType, selectedCategories } = attributes;
+	const { postType, selectedCategories, numberOfItems } = attributes;
 
 	const { isResolvingPostTypes, postTypes } = __useSelect((select) => {
 		const { hasFinishedResolution, getPostTypes } = select("core");
@@ -120,6 +120,12 @@ const useEdit = (
 		});
 	};
 
+	const onNumberOfItemsChange = (newNumber: number | undefined) => {
+		setAttributes({
+			numberOfItems: newNumber === 0 ? -1 : (newNumber ?? 0)
+		});
+	};
+
 	const getCategoriesByIds = (categoryIds: number[]) => {
 		if (!hasCategories) return undefined;
 
@@ -138,7 +144,8 @@ const useEdit = (
 					categories: selectedCategories.map(
 						(selectedCategory) => selectedCategory.id
 					)
-				})
+				}),
+				per_page: numberOfItems
 			};
 
 			return {
@@ -154,7 +161,7 @@ const useEdit = (
 				) as unknown as MmnlstPost[] | null
 			};
 		},
-		[postType, selectedCategories]
+		[postType, selectedCategories, numberOfItems]
 	);
 
 	return {
@@ -164,6 +171,8 @@ const useEdit = (
 		hasCategories,
 		selectedCategories,
 		categorySuggestions,
+		numberOfItems,
+		onNumberOfItemsChange,
 		isResolvingPosts,
 		posts,
 		onChangePostType,

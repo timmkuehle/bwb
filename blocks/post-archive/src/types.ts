@@ -10,6 +10,7 @@ export interface QueryControlsCategory {
 export interface PostArchiveAttributes {
 	postType: string;
 	selectedCategories: QueryControlsCategory[];
+	numberOfItems: number;
 }
 
 export interface PostPreviewProps {

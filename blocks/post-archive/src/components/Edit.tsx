@@ -17,6 +17,8 @@ const Edit: React.FC<BlockEditProps<PostArchiveAttributes>> = ({
 		hasCategories,
 		selectedCategories,
 		categorySuggestions,
+		numberOfItems,
+		onNumberOfItemsChange,
 		isResolvingPosts,
 		posts,
 		onChangePostType,
@@ -55,6 +57,9 @@ const Edit: React.FC<BlockEditProps<PostArchiveAttributes>> = ({
 							categorySuggestions={categorySuggestions}
 							// @ts-expect-error QueryControls is unable to correctly infer the type of the change handler param
 							onCategoryChange={onCategoryChange}
+							minItems={-1}
+							numberOfItems={numberOfItems}
+							onNumberOfItemsChange={onNumberOfItemsChange}
 						/>
 					</PanelBody>
 				)}

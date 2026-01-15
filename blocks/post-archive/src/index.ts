@@ -22,6 +22,10 @@ registerBlockType<PostArchiveAttributes>(metadata.name, {
 		selectedCategories: {
 			type: "array",
 			default: []
+		},
+		numberOfItems: {
+			type: "number",
+			default: 5
 		}
 	},
 	edit: Edit
