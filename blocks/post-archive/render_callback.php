@@ -9,10 +9,13 @@ $category_ids = array_map(function($cat) {
 	return $cat['id'];
 }, $attributes['selectedCategories'] ?? []);
 
+$number_of_items = $attributes['numberOfItems'] ?? 5;
+
 $query = new \WP_Query([
 	'post_type' => $post_type,
 	'post_status' => 'publish',
 	'category__in' => $category_ids,
+	'posts_per_page' => $number_of_items,
 ]);
 
 if ($query->have_posts()) : ?>
