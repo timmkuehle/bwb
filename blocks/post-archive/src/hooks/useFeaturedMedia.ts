@@ -22,7 +22,10 @@ const useFeaturedMedia = (media: Attachment) => {
 		decoding: "async",
 		fetchPriority: "auto",
 		srcSet: srcSet,
-		sizes: `(max-width: ${width.toString()}px) 100vw, ${width.toString()}px`
+		sizes:
+			width !== undefined
+				? `(max-width: ${width.toString()}px) 100vw, ${width.toString()}px`
+				: undefined
 	};
 
 	return { imgAttributes };

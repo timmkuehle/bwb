@@ -1,13 +1,8 @@
 import __useSelect from "@typed-overrides/__useSelect";
 import { useState, useEffect } from "@wordpress/element";
-import {
-	JkfsCategory,
-	JkfsCustomer,
-	JkfsPartner,
-	JkfsPost
-} from "@shared-types/PostTypes";
-import { PostArchiveAttributes } from "../types";
-import { Type } from "@wordpress/core-data";
+import { MmnlstPost } from "@shared-types/PostTypes";
+import { PostArchiveAttributes, QueryControlsCategory } from "../types";
+import { Type, Term } from "@wordpress/core-data";
 
 const useEdit = (
 	attributes: PostArchiveAttributes,
@@ -82,7 +77,7 @@ const useEdit = (
 					"taxonomy",
 					"category",
 					query
-				) as JkfsCategory[]
+				) as Term[]
 			};
 		},
 		[isResolvingPostTypes, postTypeSupportsCategories]
@@ -94,13 +89,24 @@ const useEdit = (
 		categories!.length > 0;
 
 	const categorySuggestions = hasCategories
-		? categories!.reduce<Record<string, JkfsCategory>>(
-				(prevCat, curCat) => ({ ...prevCat, [curCat.name]: curCat }),
+		? categories!.reduce<Record<string, QueryControlsCategory>>(
+				(prevCat, curCat) => ({
+					...prevCat,
+					[curCat.name]: {
+						id: curCat.id,
+						name: curCat.name,
+						parent: curCat.parent ?? 0
+					}
+				}),
 				{}
 			)
 		: undefined;
 
-	const onCategoryChange = (newCategories: (string | JkfsCategory)[]) => {
+	const onCategoryChange = (
+		categories: (string | { id: number; value: string })[]
+	) => {
+		if (!categorySuggestions) return;
+
 		setAttributes({
 			selectedCategories: newCategories.map((newCategory) =>
 				typeof newCategory === "string"
@@ -141,7 +147,7 @@ const useEdit = (
 					"postType",
 					postType,
 					query
-				) as unknown as (JkfsPost | JkfsPartner | JkfsCustomer)[] | null
+				) as unknown as MmnlstPost[] | null
 			};
 		},
 		[postType, selectedCategories]

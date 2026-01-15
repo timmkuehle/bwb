@@ -1,20 +1,21 @@
-import {
-	JkfsCategory,
-	JkfsCustomer,
-	JkfsPartner,
-	JkfsPost
-} from "@shared-types/PostTypes";
-import { Attachment } from "@wordpress/core-data";
+import { MmnlstPost } from "@shared-types/PostTypes";
+import { Attachment, Term } from "@wordpress/core-data";
+
+export interface QueryControlsCategory {
+	id: number;
+	name: string;
+	parent: number;
+}
 
 export interface PostArchiveAttributes {
 	postType: string;
-	selectedCategories: JkfsCategory[];
+	selectedCategories: QueryControlsCategory[];
 }
 
 export interface PostPreviewProps {
-	post: JkfsPost | JkfsPartner | JkfsCustomer;
+	post: MmnlstPost;
 	postType: string;
-	getCategoriesByIds: (categoryIds: number[]) => JkfsCategory[] | undefined;
+	getCategoriesByIds: (categoryIds: number[]) => Term[] | undefined;
 }
 
 export interface FeaturedMediaProps {
