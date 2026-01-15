@@ -26,7 +26,9 @@ const usePostPreview = (
 
 	const sanitizedExcerpt =
 		renderedExcerpt !== ""
-			? renderedExcerpt?.replace(/<\/?[A-z0-9]+>|\n/g, "")
+			? renderedExcerpt
+					?.replace(/<\/?[A-z0-9]+>|\n/g, "")
+					.replace(/&hellip;/g, "…")
 			: null;
 
 	return {

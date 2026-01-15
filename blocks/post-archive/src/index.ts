@@ -19,6 +19,10 @@ registerBlockType<PostArchiveAttributes>(metadata.name, {
 			type: "string",
 			default: "post"
 		},
+		showPostContent: {
+			type: "boolean",
+			default: false
+		},
 		selectedCategories: {
 			type: "array",
 			default: []

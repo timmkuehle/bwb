@@ -5,11 +5,13 @@ declare(strict_types=1);
 $post_type = $attributes['postType'] ?? 'post';
 $post_type_supports_categories = in_array('category', get_object_taxonomies($post_type));
 
-$category_ids = array_map(function($cat) {
-	return $cat['id'];
-}, $attributes['selectedCategories'] ?? []);
+$category_ids = $post_type_supports_categories
+	? array_map(fn($cat) => $cat['id'], $attributes['selectedCategories'] ?? [])
+	: [];
 
 $number_of_items = $attributes['numberOfItems'] ?? 5;
+
+$show_post_content = $attributes['showPostContent'] ?? false;
 
 $query = new \WP_Query([
 	'post_type' => $post_type,
@@ -18,16 +20,26 @@ $query = new \WP_Query([
 	'posts_per_page' => $number_of_items,
 ]);
 
-if ($query->have_posts()) : ?>
+if ($query->have_posts()) :
+	$archive_classes = ['mnmlst_post-archive'];
+	if (!$show_post_content) {
+		$archive_classes[] = 'no-content';
+	} ?>
 
-    <section class="mnmlst_post-archive">
+    <section class="<?= esc_attr(join(' ', $archive_classes)); ?>">
 
 	<?php while ($query->have_posts()) : $query->the_post();
 		$post_id = get_the_ID();
+
 		$title = get_the_title();
+
 		$excerpt = get_the_excerpt();
-		$truncatedExcerpt = join(' ', array_slice(explode(' ', get_the_excerpt()), 0, 30));
+		$truncatedExcerpt = $show_post_content
+			? join(' ', array_slice(explode(' ', get_the_excerpt()), 0, 30))
+			: null;
+
 		$featured_media_id = get_post_meta($post_id, '_mnmlst_featured_media', true)['id'];
+
 		$categories = $post_type_supports_categories ? get_the_category() : [];
 
 		$post_classes = ['mnmlst_post-wrapper'];
@@ -67,9 +79,9 @@ if ($query->have_posts()) : ?>
             </header>
             <div class="mnmlst_entry-content">
 
-                <?php if (!empty($excerpt)) : ?>
+                <?php if ($show_post_content && !empty($excerpt)) : ?>
 
-                    <p class="mnmlst_post-excerpt"><?= esc_html($truncatedExcerpt !== $excerpt ? $truncatedExcerpt . ' [...]' : $excerpt); ?></p>
+                    <p class="mnmlst_post-excerpt"><?= esc_html($truncatedExcerpt !== $excerpt ? $truncatedExcerpt . ' […]' : $excerpt); ?></p>
                     
                 <?php endif; ?>
 

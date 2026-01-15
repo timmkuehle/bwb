@@ -8,7 +8,8 @@ import { __ } from "@wordpress/i18n";
 const PostPreview: React.FC<PostPreviewProps> = ({
 	post,
 	postType,
-	getCategoriesByIds
+	getCategoriesByIds,
+	showPostContent
 }) => {
 	const { id, class_list, title, excerpt, meta } = post;
 
@@ -49,7 +50,7 @@ const PostPreview: React.FC<PostPreviewProps> = ({
 				)}
 			</header>
 			<div className="mnmlst_entry-content">
-				{sanitizedExcerpt !== null && (
+				{showPostContent && sanitizedExcerpt !== null && (
 					<p className="mnmlst_post-excerpt">{sanitizedExcerpt}</p>
 				)}
 			</div>

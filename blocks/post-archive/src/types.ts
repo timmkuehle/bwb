@@ -9,14 +9,21 @@ export interface QueryControlsCategory {
 
 export interface PostArchiveAttributes {
 	postType: string;
+	showPostContent: boolean;
 	selectedCategories: QueryControlsCategory[];
 	numberOfItems: number;
+}
+
+export interface PostContentPanelProps {
+	attributes: PostArchiveAttributes;
+	setAttributes: (attrs: Partial<PostArchiveAttributes>) => void;
 }
 
 export interface PostPreviewProps {
 	post: MmnlstPost;
 	postType: string;
 	getCategoriesByIds: (categoryIds: number[]) => Term[] | undefined;
+	showPostContent: boolean;
 }
 
 export interface FeaturedMediaProps {

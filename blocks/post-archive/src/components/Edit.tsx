@@ -9,6 +9,7 @@ import {
 	__experimentalToolsPanel as ToolsPanel,
 	__experimentalToolsPanelItem as ToolsPanelItem
 } from "@wordpress/components";
+import PostContentPanel from "./PostContentPanel";
 import PostPreview from "./PostPreview";
 import useEdit from "../hooks/useEdit";
 import { PostArchiveAttributes } from "../types";
@@ -58,6 +59,10 @@ const Edit: React.FC<BlockEditProps<PostArchiveAttributes>> = ({
 						__nextHasNoMarginBottom
 					/>
 				</PanelBody>
+				<PostContentPanel
+					attributes={attributes}
+					setAttributes={setAttributes}
+				/>
 				{hasCategories && (
 					<ToolsPanel
 						label={__("Sort and filter", "bwb")}
@@ -89,6 +94,7 @@ const Edit: React.FC<BlockEditProps<PostArchiveAttributes>> = ({
 							postType={postType}
 							post={post}
 							getCategoriesByIds={getCategoriesByIds}
+							showPostContent={attributes.showPostContent}
 						/>
 					))}
 		</section>
