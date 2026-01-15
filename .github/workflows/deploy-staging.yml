@@ -3,7 +3,7 @@ name: Deploy Staging
 on:
   push:
     branches:
-      - STAGING_BRANCH_NAME
+      - staging
 
 jobs:
   build-and-deploy:
@@ -20,7 +20,7 @@ jobs:
       - name: Checkout staging branch
         uses: actions/checkout@v4
         with:
-          ref: STAGING_BRANCH_NAME
+          ref: staging
 
       - name: Set up NodeJS
         uses: actions/setup-node@v4
