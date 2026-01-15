@@ -27,6 +27,13 @@ html {
 
 	--content-margin-inline: 8rem;
 
+	@media screen and (min-width: 94rem) {
+		--content-margin-inline: calc((100% - 78rem) / 2);
+	}
+	@media screen and (max-width: 848px) {
+		--content-margin-inline: 1.25rem;
+	}
+
 	--color-accent: #0b6fb0;
 	--color-accent-rgb: 11, 111, 176;
 
