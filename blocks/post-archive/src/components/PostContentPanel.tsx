@@ -27,13 +27,13 @@ const PostContentPanel: React.FC<PostContentPanelProps> = ({
 	return (
 		<ToolsPanel label={__("Post Content", "bwb")} resetAll={resetAll}>
 			<ToolsPanelItem
-				label="Display Post Content"
+				label="Display post content"
 				hasValue={() => showPostContent}
 				isShownByDefault={true}
 				onDeselect={resetShowPostContent}
 			>
 				<ToggleControl
-					label={__("Display Post Content", "bwb")}
+					label={__("Display post content", "bwb")}
 					checked={showPostContent}
 					onChange={onChangeShowPostContent}
 					__nextHasNoMarginBottom
