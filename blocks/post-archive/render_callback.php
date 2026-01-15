@@ -40,11 +40,11 @@ if ($query->have_posts()) : ?>
 
                 <?php if ($featured_media_id) : ?>
 
-                    <figure class="mnmlst_thumbnail-figure">
+                    <a class="mnmlst_thumbnail-figure" href="<?= the_permalink(); ?>">
 
                         <?= wp_get_attachment_image($featured_media_id, 'post-thumbnail', false); ?>
                             
-                    </figure>
+                    </a>
 
                 <?php endif; ?>
 

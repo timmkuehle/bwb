@@ -27,6 +27,7 @@ $post-preview-margin-block: 1rem;
 	}
 
 	.mnmlst_thumbnail-figure {
+		display: block;
 		height: unset !important;
 		aspect-ratio: 16 / 9;
 		overflow: hidden;
