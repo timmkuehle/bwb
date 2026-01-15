@@ -134,6 +134,19 @@ const useEdit = (
 		);
 	};
 
+	const querySettingsAreChanged = () =>
+		postType !== "post" ||
+		selectedCategories.length > 0 ||
+		numberOfItems !== 5;
+
+	const resetQuerySettings = () => {
+		setAttributes({
+			postType: "post",
+			selectedCategories: [],
+			numberOfItems: 5
+		});
+	};
+
 	const { isResolvingPosts, posts } = __useSelect(
 		(select) => {
 			const { hasFinishedResolution, getEntityRecords } = select("core");
@@ -173,6 +186,8 @@ const useEdit = (
 		categorySuggestions,
 		numberOfItems,
 		onNumberOfItemsChange,
+		querySettingsAreChanged,
+		resetQuerySettings,
 		isResolvingPosts,
 		posts,
 		onChangePostType,

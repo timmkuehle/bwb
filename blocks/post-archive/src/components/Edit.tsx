@@ -2,7 +2,13 @@ import React from "react";
 import { __ } from "@wordpress/i18n";
 import { BlockEditProps } from "@wordpress/blocks";
 import { InspectorControls, useBlockProps } from "@wordpress/block-editor";
-import { PanelBody, QueryControls, SelectControl } from "@wordpress/components";
+import {
+	PanelBody,
+	QueryControls,
+	SelectControl,
+	__experimentalToolsPanel as ToolsPanel,
+	__experimentalToolsPanelItem as ToolsPanelItem
+} from "@wordpress/components";
 import PostPreview from "./PostPreview";
 import useEdit from "../hooks/useEdit";
 import { PostArchiveAttributes } from "../types";
@@ -19,6 +25,8 @@ const Edit: React.FC<BlockEditProps<PostArchiveAttributes>> = ({
 		categorySuggestions,
 		numberOfItems,
 		onNumberOfItemsChange,
+		querySettingsAreChanged,
+		resetQuerySettings,
 		isResolvingPosts,
 		posts,
 		onChangePostType,
@@ -51,17 +59,27 @@ const Edit: React.FC<BlockEditProps<PostArchiveAttributes>> = ({
 					/>
 				</PanelBody>
 				{hasCategories && (
-					<PanelBody title={__("Filters", "bwb")}>
-						<QueryControls
-							selectedCategories={selectedCategories}
-							categorySuggestions={categorySuggestions}
-							// @ts-expect-error QueryControls is unable to correctly infer the type of the change handler param
-							onCategoryChange={onCategoryChange}
-							minItems={-1}
-							numberOfItems={numberOfItems}
-							onNumberOfItemsChange={onNumberOfItemsChange}
-						/>
-					</PanelBody>
+					<ToolsPanel
+						label={__("Sort and filter", "bwb")}
+						resetAll={resetQuerySettings}
+					>
+						<ToolsPanelItem
+							label={__("Filter and sort", "bwb")}
+							hasValue={querySettingsAreChanged}
+							isShownByDefault={true}
+							onReset={resetQuerySettings}
+						>
+							<QueryControls
+								selectedCategories={selectedCategories}
+								categorySuggestions={categorySuggestions}
+								// @ts-expect-error QueryControls is unable to correctly infer the type of the change handler param
+								onCategoryChange={onCategoryChange}
+								minItems={-1}
+								numberOfItems={numberOfItems}
+								onNumberOfItemsChange={onNumberOfItemsChange}
+							/>
+						</ToolsPanelItem>
+					</ToolsPanel>
 				)}
 			</InspectorControls>
 			{isResolvingPosts
