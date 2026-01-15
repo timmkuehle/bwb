@@ -11,6 +11,8 @@ $post-preview-margin-block: 1rem;
 	flex-wrap: wrap;
 
 	.mnmlst_post-wrapper {
+		display: flex;
+		flex-direction: column;
 		flex: 1 1 18rem;
 		overflow: hidden;
 		background-color: var(--color-light);
@@ -47,6 +49,10 @@ $post-preview-margin-block: 1rem;
 			margin-bottom: 0.375rem;
 			text-align: left;
 		}
+
+		&:has(.mnmlst_post-categories) {
+			margin-bottom: 0;
+		}
 	}
 
 	.mnmlst_post-title {
@@ -70,6 +76,7 @@ $post-preview-margin-block: 1rem;
 	}
 
 	.mnmlst_entry-content {
+		flex-grow: 1;
 		margin-inline: $post-preview-margin-inline;
 
 		& > .mnmlst_post-excerpt {
