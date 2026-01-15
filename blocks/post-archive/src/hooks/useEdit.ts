@@ -108,11 +108,15 @@ const useEdit = (
 		if (!categorySuggestions) return;
 
 		setAttributes({
-			selectedCategories: newCategories.map((newCategory) =>
-				typeof newCategory === "string"
-					? categorySuggestions![newCategory]
-					: newCategory
-			)
+			selectedCategories: categories
+				.map((cat) =>
+					typeof cat === "string"
+						? (categorySuggestions[cat] as unknown as
+								| QueryControlsCategory
+								| undefined)
+						: categorySuggestions[cat.value]
+				)
+				.filter((cat) => cat !== undefined)
 		});
 	};
 
