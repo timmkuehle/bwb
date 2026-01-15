@@ -1,0 +1,9 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "mnmlst/post-archive",
+  "title": "MNMLST Post Archive",
+  "category": "layout",
+  "render": "./render_callback.php",
+  "textdomain": "bwb"
+}

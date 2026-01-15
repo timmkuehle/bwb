@@ -1,0 +1,12 @@
+@use "../../../assets/src/styles/postArchive";
+
+.mnmlst_thumbnail-figure.is-resolving {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	.components-spinner {
+		width: 2.5em;
+		height: 2.5em;
+	}
+}

@@ -1,0 +1,165 @@
+import __useSelect from "@typed-overrides/__useSelect";
+import { useState, useEffect } from "@wordpress/element";
+import {
+	JkfsCategory,
+	JkfsCustomer,
+	JkfsPartner,
+	JkfsPost
+} from "@shared-types/PostTypes";
+import { PostArchiveAttributes } from "../types";
+import { Type } from "@wordpress/core-data";
+
+const useEdit = (
+	attributes: PostArchiveAttributes,
+	setAttributes: (attrs: Partial<PostArchiveAttributes>) => void
+) => {
+	const { postType, selectedCategories } = attributes;
+
+	const { isResolvingPostTypes, postTypes } = __useSelect((select) => {
+		const { hasFinishedResolution, getPostTypes } = select("core");
+
+		const isResolvingPostTypes = !hasFinishedResolution("getPostTypes", [
+			{ per_page: -1 }
+		]);
+
+		const postTypes = getPostTypes({ per_page: -1 });
+
+		return {
+			isResolvingPostTypes,
+			postTypes: postTypes?.filter(
+				(postType) =>
+					postType.viewable &&
+					!["page", "attachment"].includes(postType.slug)
+			)
+		};
+	}, []);
+
+	const postTypeSelectOptions = isResolvingPostTypes
+		? undefined
+		: postTypes!.map((postType) => ({
+				label: postType.name,
+				value: postType.slug
+			}));
+
+	const onChangePostType = (newPostType: string) => {
+		setAttributes({ postType: newPostType });
+	};
+
+	const [postTypeProps, setPostTypeProps] = useState<Type>();
+
+	useEffect(() => {
+		if (isResolvingPostTypes) return;
+
+		setPostTypeProps(postTypes!.filter((pt) => pt.slug === postType)[0]);
+	}, [isResolvingPostTypes, postTypes, postType]);
+
+	const postTypeSupportsCategories = postTypeProps
+		? postTypeProps.taxonomies.includes("category")
+		: false;
+
+	const { isResolvingCategories, categories } = __useSelect(
+		(select) => {
+			const { hasFinishedResolution, getEntityRecords } = select("core");
+
+			if (isResolvingPostTypes || !postTypeSupportsCategories) {
+				return {
+					isResolvingCategories: false,
+					categories: null
+				};
+			}
+
+			const query = {
+				per_page: -1,
+				context: "view"
+			};
+
+			return {
+				isResolvingCategories: !hasFinishedResolution(
+					"getEntityRecords",
+					["taxonomy", "category", query]
+				),
+				categories: getEntityRecords(
+					"taxonomy",
+					"category",
+					query
+				) as JkfsCategory[]
+			};
+		},
+		[isResolvingPostTypes, postTypeSupportsCategories]
+	);
+
+	const hasCategories =
+		postTypeSupportsCategories &&
+		!isResolvingCategories &&
+		categories!.length > 0;
+
+	const categorySuggestions = hasCategories
+		? categories!.reduce<Record<string, JkfsCategory>>(
+				(prevCat, curCat) => ({ ...prevCat, [curCat.name]: curCat }),
+				{}
+			)
+		: undefined;
+
+	const onCategoryChange = (newCategories: (string | JkfsCategory)[]) => {
+		setAttributes({
+			selectedCategories: newCategories.map((newCategory) =>
+				typeof newCategory === "string"
+					? categorySuggestions![newCategory]
+					: newCategory
+			)
+		});
+	};
+
+	const getCategoriesByIds = (categoryIds: number[]) => {
+		if (!hasCategories) return undefined;
+
+		return categories!.filter((category) =>
+			categoryIds.includes(category.id)
+		);
+	};
+
+	const { isResolvingPosts, posts } = __useSelect(
+		(select) => {
+			const { hasFinishedResolution, getEntityRecords } = select("core");
+
+			const query = {
+				post_type: postType,
+				...(selectedCategories.length > 0 && {
+					categories: selectedCategories.map(
+						(selectedCategory) => selectedCategory.id
+					)
+				})
+			};
+
+			return {
+				isResolvingPosts: !hasFinishedResolution("getEntityRecords", [
+					"postType",
+					postType,
+					query
+				]),
+				posts: getEntityRecords(
+					"postType",
+					postType,
+					query
+				) as unknown as (JkfsPost | JkfsPartner | JkfsCustomer)[] | null
+			};
+		},
+		[postType, selectedCategories]
+	);
+
+	return {
+		postType,
+		isResolvingPostTypes,
+		postTypeSelectOptions,
+		hasCategories,
+		selectedCategories,
+		categorySuggestions,
+		isResolvingPosts,
+		posts,
+		onChangePostType,
+		onCategoryChange,
+		getCategoriesByIds
+	};
+};
+
+export default useEdit;
