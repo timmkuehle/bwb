@@ -6,11 +6,13 @@
 body {
 	font-family: sans-serif;
 	color: var(--color-dark);
+	fill: var(--color-dark);
 }
 
 @media screen and (hover: hover) {
 	a:hover {
 		color: var(--color-accent);
+		fill: var(--color-accent);
 	}
 }
 
