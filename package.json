@@ -4,8 +4,8 @@
   "scripts": {
     "start": "webpack --mode=development --watch",
     "build": "webpack --mode=production",
-    "extract-translations": "node scripts/i18n/extract-translations.js",
-    "translate-js": "node scripts/i18n/make-json.js",
+    "i18n-extract": "node scripts/i18n/extract-translations.js",
+    "i18n-make-json": "node scripts/i18n/make-json.js",
     "lint": "tsc -b ; eslint",
     "format": "php-cs-fixer fix ; prettier . --write"
   },
