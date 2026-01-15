@@ -46,7 +46,7 @@ const PostPreview: React.FC<PostPreviewProps> = ({
 			</div>
 			<footer className="mnmlst_entry-footer">
 				<a className="mnmlst_post-link">
-					<span>{__("Learn more", "jkfs")}</span>
+					<span>{__("Learn more", "bwb")}</span>
 					<LinkIcon className="mnmlst_post-link-icon" />
 				</a>
 			</footer>

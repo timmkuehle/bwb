@@ -29,19 +29,19 @@ const Edit: React.FC<BlockEditProps<PostArchiveAttributes>> = ({
 	return (
 		<section
 			{...useBlockProps({
-				className: "jkfs-post-archive mnmlst_post-archive"
+				className: "bwb-post-archive mnmlst_post-archive"
 			})}
 		>
 			<InspectorControls>
 				<PanelBody
-					title={__("General settings", "jkfs")}
+					title={__("General settings", "bwb")}
 					initialOpen={true}
 				>
 					<SelectControl
-						label={__("Post Type", "jkfs")}
+						label={__("Post Type", "bwb")}
 						help={__(
 							"Select the type of content to display: posts, pages, or custom post types.",
-							"jkfs"
+							"bwb"
 						)}
 						value={postType}
 						options={postTypeSelectOptions}
@@ -51,7 +51,7 @@ const Edit: React.FC<BlockEditProps<PostArchiveAttributes>> = ({
 					/>
 				</PanelBody>
 				{hasCategories && (
-					<PanelBody title={__("Filters", "jkfs")}>
+					<PanelBody title={__("Filters", "bwb")}>
 						<QueryControls
 							selectedCategories={selectedCategories}
 							categorySuggestions={categorySuggestions}

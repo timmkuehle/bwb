@@ -7,11 +7,11 @@ import { PostArchiveAttributes } from "./types";
 
 registerBlockType<PostArchiveAttributes>(metadata.name, {
 	...metadata,
-	title: _x("MNMLST Post Archive", "block title", "jkfs"),
+	title: _x("MNMLST Post Archive", "block title", "bwb"),
 	description: _x(
 		"An advanced block that allows displaying post types based on different query parameters.",
 		"block description",
-		"jkfs"
+		"bwb"
 	),
 	icon: loop,
 	attributes: {
