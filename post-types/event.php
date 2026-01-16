@@ -1,0 +1,40 @@
+<?php
+
+declare(strict_types=1);
+
+return [
+	'labels' => [
+		'name' => __('Events', 'bwb'),
+		'singular_name' => __('Event', 'bwb'),
+		'menu_name' => __('Events', 'bwb'),
+		'name_admin_bar' => __('Event', 'bwb'),
+		'add_new' => __('Add Event', 'bwb'),
+		'add_new_item' => __('Add Event', 'bwb'),
+		'new_item' => __('New Event', 'bwb'),
+		'edit_item' => __('Edit Event', 'bwb'),
+		'view_item' => __('View Event', 'bwb'),
+		'all_items' => __('All Events', 'bwb'),
+		'search_items' => __('Search Events', 'bwb'),
+		'not_found' => __('No events found.', 'bwb'),
+		'not_found_in_trash' => __('No events found in Trash.', 'bwb'),
+		'archives' => __('Event Archives', 'bwb'),
+		'uploaded_to_this_item' => __('Uploaded to this event', 'bwb'),
+		'filter_items_list' => __('Filter events list', 'bwb'),
+		'items_list_navigation' => __('Events list navigation', 'bwb'),
+		'items_list' => __('Events list', 'bwb'),
+		'item_published' => __('Event published.', 'bwb'),
+		'item_published_privately' => __('Event published privately.', 'bwb'),
+		'item_reverted_to_draft' => __('Event reverted to draft.', 'bwb'),
+		'item_trashed' => __('Event trashed.', 'bwb'),
+		'item_scheduled' => __('Event scheduled.', 'bwb'),
+		'item_updated' => __('Event updated.', 'bwb'),
+	],
+	'public' => true,
+	'has_archive' => true,
+	'rewrite' => ['slug' => 'event'],
+	'supports' => ['title', 'editor', 'excerpt', 'custom-fields'],
+	'show_in_rest' => true,
+	'menu_position' => 5,
+	'menu_icon' => 'dashicons-calendar',
+	'capability_type' => 'post',
+];
