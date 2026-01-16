@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: MNMLST-Child 0.7.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-05 20:37+0200\n"
-"PO-Revision-Date: 2026-01-15 20:57+0100\n"
+"PO-Revision-Date: 2026-01-16 16:26+0100\n"
 "Last-Translator: Tim Moritz Kühle <timmoritz.kuehle@outlook.com>\n"
 "Language-Team: Tim Moritz Kühle - timmoritz.kuehle@outlook.com\n"
 "Language: de\n"
@@ -45,3 +45,87 @@ msgstr "https://github.com/timmkuehle"
 #: blocks/post-archive/render_callback.php:92
 msgid "Learn more"
 msgstr "Mehr erfahren"
+
+#: post-types/event.php:7 post-types/event.php:9
+msgid "Events"
+msgstr "Veranstaltungen"
+
+#: post-types/event.php:8 post-types/event.php:10
+msgid "Event"
+msgstr "Veranstaltung"
+
+#: post-types/event.php:11 post-types/event.php:12
+msgid "Add Event"
+msgstr "Veranstaltung hinzufügen"
+
+#: post-types/event.php:13
+msgid "New Event"
+msgstr "Neue Veranstaltung"
+
+#: post-types/event.php:14
+msgid "Edit Event"
+msgstr "Veranstaltung bearbeiten"
+
+#: post-types/event.php:15
+msgid "View Event"
+msgstr "Veranstaltung anzeigen"
+
+#: post-types/event.php:16
+msgid "All Events"
+msgstr "Alle Veranstaltungen"
+
+#: post-types/event.php:17
+msgid "Search Events"
+msgstr "Veranstaltungen durchsuchen"
+
+#: post-types/event.php:18
+msgid "No events found."
+msgstr "Es wurden keine Veranstaltungen gefunden."
+
+#: post-types/event.php:19
+msgid "No events found in Trash."
+msgstr "Es wurden keine Veranstaltungen im Papierkorb gefunden."
+
+#: post-types/event.php:20
+msgid "Event Archives"
+msgstr "Veranstaltungsarchive"
+
+#: post-types/event.php:21
+msgid "Uploaded to this event"
+msgstr "Hochgeladen zu dieser Veranstaltung"
+
+#: post-types/event.php:22
+msgid "Filter events list"
+msgstr "Veranstaltungsliste filtern"
+
+#: post-types/event.php:23
+msgid "Events list navigation"
+msgstr "Veranstaltungslisten-Naviagtion"
+
+#: post-types/event.php:24
+msgid "Events list"
+msgstr "Veranstaltungsliste"
+
+#: post-types/event.php:25
+msgid "Event published."
+msgstr "Die Veranstaltung wurde veröffentlicht."
+
+#: post-types/event.php:26
+msgid "Event published privately."
+msgstr "Die Veranstaltung wurde privat veröffentlicht."
+
+#: post-types/event.php:27
+msgid "Event reverted to draft."
+msgstr "Die Veranstaltung wurde auf Entwurf zurückgesetzt."
+
+#: post-types/event.php:28
+msgid "Event trashed."
+msgstr "Die Veranstaltung wurde in den Papierkorb verschoben."
+
+#: post-types/event.php:29
+msgid "Event scheduled."
+msgstr "Die Veranstaltung wurde geplant."
+
+#: post-types/event.php:30
+msgid "Event updated."
+msgstr "Die Veranstaltung wurde aktualisiert."
