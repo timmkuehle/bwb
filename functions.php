@@ -36,3 +36,19 @@ function mnmlst_register_post_types() {
 	}
 }
 add_action('init', 'mnmlst_register_post_types');
+
+//Register custom post meta
+function bwb_register_post_meta() {
+	foreach (glob(get_stylesheet_directory() . '/post-meta/*.php') as $post_meta_file) {
+		$meta_key = '_mnmlst_' . basename($post_meta_file, '.php');
+		$args = require $post_meta_file;
+
+		$post_type = $args['object_subtype'] ?? '';
+
+		unset($args['object_subtype']);
+		$args['show_in_rest'] = array_key_exists('show_in_rest', $args) ? $args['show_in_rest'] : true;
+
+		register_post_meta($post_type, $meta_key, $args);
+	}
+}
+add_action('init', 'bwb_register_post_meta');
