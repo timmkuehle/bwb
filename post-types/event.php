@@ -32,7 +32,7 @@ return [
 	'public' => true,
 	'has_archive' => true,
 	'rewrite' => ['slug' => 'event'],
-	'supports' => ['title', 'editor', 'excerpt', 'custom-fields'],
+	'supports' => ['title', 'editor', 'custom-fields'],
 	'show_in_rest' => true,
 	'menu_position' => 5,
 	'menu_icon' => 'dashicons-calendar',
