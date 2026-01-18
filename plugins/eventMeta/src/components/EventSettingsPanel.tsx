@@ -15,24 +15,6 @@ const EventSettingsPanel: React.FC = () => {
 
 	console.log(postMeta);
 
-	const comp = (
-		<div
-			className="components-popover components-dropdown__content editor-post-schedule__dialog is-positioned"
-			data-wp-c16t="true"
-			data-wp-component="Popover"
-			aria-label="Veröffentlichungsdatum ändern"
-			tabIndex={-1}
-			style={{
-				position: "absolute",
-				top: 0,
-				left: 0,
-				opacity: 1,
-				transform: "translateX(660px) translateY(238px)",
-				transformOrigin: "100% 0% 0px"
-			}}
-		></div>
-	);
-
 	return (
 		<HStack className="editor-post-panel__row" ref={popoverAnchorRef}>
 			<div className="editor-post-panel__row-label">

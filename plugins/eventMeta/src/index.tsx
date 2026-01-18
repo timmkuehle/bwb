@@ -1,4 +1,3 @@
-import { __ } from "@wordpress/i18n";
 import { registerPlugin } from "@wordpress/plugins";
 import { PluginPostStatusInfo } from "@wordpress/editor";
 import EventSettingsPanel from "./components/EventSettingsPanel";
