@@ -21,7 +21,7 @@ declare(strict_types=1);
 //Register custom post types
 function mnmlst_register_post_types() {
 	foreach (glob(get_stylesheet_directory() . '/post-types/*.php') as $post_type_file) {
-		$post_type = basename($post_type_file, '.php');
+		$post_type = 'mnmlst_' . basename($post_type_file, '.php');
 		$args = require $post_type_file;
 
 		$args['supports'] = array_merge($args['supports'] ?? [], ['title', 'editor', 'custom-fields']);
