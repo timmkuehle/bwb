@@ -3,7 +3,7 @@ name: Deploy Live
 on:
   push:
     branches:
-      - MAIN_BRANCH_NAME
+      - main
 
 jobs:
   build-and-deploy:
@@ -20,7 +20,7 @@ jobs:
       - name: Checkout main branch
         uses: actions/checkout@v4
         with:
-          ref: MAIN_BRANCH_NAME
+          ref: main
 
       - name: Set up NodeJS
         uses: actions/setup-node@v4
